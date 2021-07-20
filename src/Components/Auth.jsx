@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import queryString from "query-string";
 import axios from "axios";
+import jsonpAdapter from "axios-jsonp";
+import jsonp from "jsonp";
 export function Auth() {
   const client_secret = "40b63a84bc7e4e0b44522e63efe9d984";
   const client_id = 626807078280160;
@@ -24,12 +26,16 @@ export function Auth() {
     try {
       const response = await axios.post(
         "https://api.instagram.com/oauth/access_token/",
-        bodyFormData
+        bodyFormData,
+        { headers: { "Access-Control-Allow-Origin": "*" } }
       );
       const access_token = response.data.access_token;
       const user_id = response.data.user_id;
       const ddResp = await axios.get(
-        `https://graph.instagram.com/${user_id}?fields=id,username&access_token=${access_token}`
+        `https://graph.instagram.com/${user_id}?fields=id,username&access_token=${access_token}`,
+        {
+          dataType: "",
+        }
       );
       setUserName(ddResp.data.username);
     } catch (error) {
