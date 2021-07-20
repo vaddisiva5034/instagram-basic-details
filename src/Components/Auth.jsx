@@ -5,7 +5,7 @@ import axios from "axios";
 export function Auth() {
   const client_secret = "40b63a84bc7e4e0b44522e63efe9d984";
   const client_id = 626807078280160;
-  const grant_type = authorization_code;
+  const grant_type = "authorization_code";
   const redirect_uri = "https://master.d2fobv91sb7b4f.amplifyapp.com/auth";
   const location = useLocation();
   const queryParms = queryString.parse(location.search);
