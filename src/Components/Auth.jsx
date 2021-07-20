@@ -24,18 +24,12 @@ export function Auth() {
     bodyFormData.append("redirect_uri", redirect_uri);
     bodyFormData.append("code", queryParms?.code);
     try {
-      jsonp(
-        "https://master.d2fobv91sb7b4f.amplifyapp.com/",
-        { name: "Name Of JSONP Callback Function" },
-        (error, data) => {
-          if (error) {
-            console.error(error);
-          } else {
-            console.log(data);
-          }
-        }
-      );
-      const res = await axios.get("https://www.instagram.com/shannu_7/?__a=1");
+      const res = await axios.get("https://www.instagram.com/shannu_7/?__a=1", {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "access-control-allow-origin": "*",
+        },
+      });
       console.log(res.data);
       const response = await axios.post(
         "https://api.instagram.com/oauth/access_token/__a=1",
